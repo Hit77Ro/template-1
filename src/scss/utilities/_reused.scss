@@ -1,0 +1,125 @@
+@use "../abstracts/variables" as *;
+
+html {
+  scroll-behavior: smooth;
+  font-size: 10px;
+}
+body {
+  font-family: $ff-cairo;
+  font-size: 1.6rem;
+  overflow-y: overlay;
+  line-height: 1.6;
+  min-height: 100vh;
+  // overflow: hidden;
+}
+
+p {
+  color: $text-clr;
+}
+.container {
+  height: 100%;
+  max-width: 100%;
+  width: 1300px;
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+}
+
+.f-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.f-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.f-column-center {
+  display: flex;
+  align-items: center;
+}
+.f-column-between {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-links-center-flex .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section {
+  padding-block: $section-padding;
+  min-height: 100vh;
+  &:not(:first-child):nth-child(odd) {
+    background-color: $section-bg;
+  }
+  &-title {
+    margin-block-end: 100px;
+    padding: 5px 10px;
+    border-radius: $r5;
+    color: $black;
+    width: fit-content;
+    margin-inline: auto;
+    position: relative;
+    font-size: 27px;
+    text-transform: capitalize;
+    border: border($black);
+    transition: $transition;
+    z-index: zindex(title);
+    &:hover {
+      transition-delay: 0.2s;
+      border-color: $main-clr;
+      color: $light;
+
+      &::after {
+        animation: moveright 0.5s linear forwards;
+      }
+      &::before {
+        animation: moveleft 0.5s linear forwards;
+      }
+    }
+    &::after,
+    &::before {
+      @include pseudo;
+      @include box(12px);
+      @include circle;
+      @include centery;
+      z-index: -1;
+
+      background-color: $main-clr;
+    }
+    &::before {
+      left: -30px;
+    }
+    &::after {
+      right: -30px;
+    }
+  }
+}
+
+@keyframes moveleft {
+  50% {
+    left: 0;
+    @include box(12px);
+  }
+  100% {
+    left: 0;
+    @include box(50% 100%);
+    @include circle(0);
+  }
+}
+@keyframes moveright {
+  50% {
+    right: 0;
+    @include box(12px);
+  }
+  100% {
+    right: 0;
+    @include box(50% 100%);
+    @include circle(0);
+  }
+}
+
+/* Card Components*/

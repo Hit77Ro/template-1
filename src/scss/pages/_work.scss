@@ -1,0 +1,93 @@
+@use "../abstracts/variables" as *;
+
+.work {
+  .container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
+    gap: 30px;
+
+    @include media(lg, "max") {
+      grid-template-columns: 1fr;
+    }
+
+    .img-holder {
+      img {
+        max-width: 500px;
+      }
+
+      @include media(lg, "max") {
+        justify-self: center;
+      }
+    }
+
+    .content {
+      flex-direction: column;
+      gap: $spacer20;
+      @include media(lg, "max") {
+        order: -1;
+      }
+      .card {
+        max-height: 200px;
+        position: relative;
+        transition: $transition;
+        flex-basis: 300px;
+        border: 3px solid transparent;
+        gap: $spacer10;
+        overflow: hidden;
+        &:nth-child(1) {
+          background-color: lighten($red, 40%);
+          border-color: lighten($red, 30%);
+        }
+        &:nth-child(2) {
+          border-color: lighten($green, 30%);
+          background-color: lighten($green, 50%);
+        }
+        &:nth-child(3) {
+          border-color: lighten($blue, 30%);
+          background-color: lighten($blue, 40%);
+        }
+        &::after {
+          @include pseudo;
+          @include box(100%);
+          transition: $transition;
+        }
+        &:hover {
+          &::after {
+            animation: flash 0.3s linear forwards;
+          }
+        }
+
+        &-title {
+          margin-bottom: $spacer10;
+          text-align: center;
+          font-size: $fz-extralarge;
+        }
+
+        box-shadow: $shadow-2;
+        padding: $spacer10;
+        @include circle($r10);
+        @include flex-center;
+        flex-direction: column;
+
+        img {
+          max-width: 50px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes flash {
+  0% {
+    scale: 0;
+  }
+  80% {
+    background-color: rgba($main-clr, 0.21);
+    scale: 1;
+  }
+  100% {
+    pointer-events: none;
+    opacity: 0;
+  }
+}

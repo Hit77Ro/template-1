@@ -1,0 +1,83 @@
+@use "../abstracts/variables" as *;
+
+.home {
+  position: relative;
+  &::after {
+    @include pseudo();
+    @include box(100% 125%);
+    background-color: $section-bg;
+    @include position(top -30% left 0);
+    z-index: -1;
+    transform: skewY(-10deg);
+  }
+  .container {
+    gap: 40px;
+    min-height: calc(100vh - $header-height);
+    padding-bottom: $header-height;
+    @include media(lg, "max") {
+      justify-content: center;
+    }
+  }
+  .data {
+    flex-basis: 600px;
+    @include media(lg, "max") {
+      text-align: center;
+    }
+
+    .title {
+      font-size: $home-title;
+      font-weight: $fw-bolder;
+      @include media(sm, "max") {
+        font-size: $home-title-sm;
+      }
+    }
+    .text {
+      font-size: $home-text;
+      @include media(sm, "max") {
+        font-size: $home-text-sm;
+      }
+    }
+  }
+  .img-holder {
+    display: none;
+    max-width: 600px;
+    animation: move 5s alternate ease-in infinite;
+    @include media(lg) {
+      display: block;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+  .scroll_bottom {
+    @include absolute(bottom 0 left 50%);
+    font-size: $fz-extralarge;
+    color: $main-clr;
+    cursor: pointer;
+    animation: moveup 2s infinite;
+  }
+}
+
+@keyframes move {
+  0%,
+  100% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-50px);
+  }
+}
+@keyframes moveup {
+  0%,
+  10%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40%,
+  60% {
+    transform: translateY(-15px);
+  }
+}

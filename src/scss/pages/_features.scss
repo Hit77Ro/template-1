@@ -1,0 +1,78 @@
+@use "../abstracts/variables" as *;
+$colors: $red $green $blue;
+.features {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    .card {
+      flex-direction: column;
+      border-radius: $r10;
+      box-shadow: $shadow-2;
+      &-body {
+        flex-direction: column;
+        gap: 40px;
+        p {
+          font-size: $fz-extralarge;
+          padding: $spacer20;
+        }
+        a {
+          font-size: $fz-extralarge;
+          padding: 10px;
+          color: $main-clr;
+          border-radius: $r5;
+          border: 2px solid transparent;
+          text-transform: capitalize;
+          margin-bottom: $spacer20;
+          background-position: right;
+          background-size: 200%;
+          transition: $transition;
+        }
+      }
+      // end  body
+      &-title {
+        position: relative;
+        font-size: 40px;
+        &::after {
+          @include pseudo;
+          @include box(50% 5px);
+          bottom: -5px;
+          @include centerx;
+        }
+      }
+      // card
+      &:nth-child(1) {
+        .card-title::after {
+          background-color: $red;
+        }
+
+        a {
+          @include hover-effect($red);
+        }
+      }
+      &:nth-child(2) {
+        .card-title::after {
+          background-color: $green;
+        }
+
+        a {
+          @include hover-effect($green);
+        }
+      }
+      &:nth-child(3) {
+        .card-title::after {
+          background-color: $blue;
+        }
+        a {
+          @include hover-effect($blue);
+        }
+      }
+      &:hover {
+        a {
+          background-position: left;
+          color: $light;
+        }
+      }
+    }
+  }
+}
