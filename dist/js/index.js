@@ -16,7 +16,9 @@ ShowMenu();
 // Start sticky header function
 function StickyHeader() {
   let header = document.querySelector(".header");
-  header.querySelector(".nav").classList.contains(".active") ? header.querySelector(".nav").classList.remove("active") : null
+  header.querySelector(".nav").classList.contains(".active")
+    ? header.querySelector(".nav").classList.remove("active")
+    : null;
 
   window.addEventListener("scroll", function () {
     let y = this.scrollY;
